@@ -1,6 +1,7 @@
 CC=gcc
 SRCDIR=src
 CFLAGS=-I$(SRCDIR) -g -DDEBUG_MODEc -Wall -Werror -Wpedantic -fsanitize=address -static-libasan
+LDFLAGS=-lfftw3 -lm
 
 ODIR=obj
 _OBJ=main.o
