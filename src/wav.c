@@ -124,7 +124,7 @@ int wav_get_frame(FILE* wav_file, wav_info_t wav_info, uint8_t fps, uint32_t fra
 	// Seek to the indicated frame offset, and read one frame
 	int ret;
 	fseek(wav_file, wav_info.data_offset + wav_info.block_align * frame_sz * frame_offset, SEEK_SET);
-	if ((ret = fread(buffer, wav_info.block_align, frame_sz, wav_file)) == 0)
+	if ((ret = fread(buffer, wav_info.block_align, frame_sz, wav_file)) < 0)
 		return ERR_FREAD_FAIL;
 
 	return ret;
