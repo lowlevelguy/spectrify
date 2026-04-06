@@ -4,10 +4,10 @@ CFLAGS=-I$(SRCDIR) -g -DDEBUG_MODEc -Wall -Werror -Wpedantic -fsanitize=address 
 LDFLAGS=-lfftw3 -lm
 
 ODIR=obj
-_OBJ=main.o wav.o
+_OBJ=main.o wav.o render.o
 OBJ=$(patsubst %,$(ODIR)/%,$(_OBJ))
 
-_DEPS=wav.h
+_DEPS=wav.h render.h
 DEPS=$(patsubst %,$(SRCDIR)/%,$(_DEPS))
 
 $(ODIR)/%.o: $(SRCDIR)/%.c $(DEPS)

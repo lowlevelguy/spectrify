@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include "wav.h"
+#include "render.h"
+
+void write_ppm(const char* filename, pixel_t* frame, size_t width, size_t height) {
+    FILE* f = fopen(filename, "wb");
+    fprintf(f, "P6\n%zu %zu\n255\n", width, height);
+    fwrite(frame, sizeof(pixel_t), width * height, f);
+    fclose(f);
+}
 
 int main() {
 	printf("Spectrify - Generate Spectrogram from Audio File\n");
@@ -14,6 +22,7 @@ int main() {
 		return -1;
 	}
 
+	// Testing wav.h
 	if (wav_read_header(input, &input_info) != 0) {
 		printf("Some error was encoutered.\n");
 		return -1;
@@ -53,6 +62,13 @@ int main() {
 	}
 
 	free(buffer);
+
+	// Testing render.c
+	pixel_t frame[640 * 480];
+	double levels[] = {-75.0, -70.0, -55.0, -30.0, -15.0, -10.0, -20.0, -45.0, -60.0, -33.0, -20.0, -19.0, -70.0, -60.0, -60.0, -75.0};
+	render_frame(levels, sizeof(levels)/sizeof(double), frame, 640, 480);
+	write_ppm("tests/out.ppm", frame, 640, 480);
+	printf("Wrote image to out.ppm\n");
 
 	return 0;
 }
