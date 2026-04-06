@@ -4,7 +4,7 @@
 
 #define MIN_DB		-80.0
 #define MAX_DB		-10.0
-#define CLAMP_DB(x)	fmax(fmin((double)(x), MAX_DB), MIN_DB)
+#define CLAMP_DB(x)	fmax(fmin((double)(x), MAX_DB), MIN_DB+1.0)
 
 void render_frame(double* levels, size_t levels_sz,
 		pixel_t* frame, size_t frame_width, size_t frame_height) {

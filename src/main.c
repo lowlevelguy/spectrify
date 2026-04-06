@@ -65,7 +65,7 @@ int main() {
 
 	// Testing render.c
 	pixel_t frame[640 * 480];
-	double levels[] = {-75.0, -70.0, -55.0, -30.0, -15.0, -10.0, -20.0, -45.0, -60.0, -33.0, -20.0, -19.0, -70.0, -60.0, -60.0, -75.0};
+	double levels[] = {-75.0, -70.0, -55.0, -30.0, -15.0, -10.0, -20.0, -45.0, -60.0, -33.0, -20.0, -19.0, -70.0, -60.0, -60.0, -80.0};
 	render_frame(levels, sizeof(levels)/sizeof(double), frame, 640, 480);
 	write_ppm("tests/out.ppm", frame, 640, 480);
 	printf("Wrote image to out.ppm\n");
